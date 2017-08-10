@@ -13,8 +13,7 @@ import {
 import { Images } from '../Themes'
 // Styles
 import styles from './Styles/DesktopScreenStyles'
-import {navigate} from 'react-navigation'
-
+import {navigate} from 'react-navigation';
 // importing for AsyncStorage
 
 export default class DesktopScreen extends Component {
@@ -52,16 +51,16 @@ export default class DesktopScreen extends Component {
                         <View style={{backgroundColor: "#BDBDBD", borderBottomWidth: 1, marginBottom: 2}}/>
                         
                     </View>
-                    <Text style={[styles.centered, styles.sectionLogo]}>So, what do you wanna do today?? </Text>  
+                    <Text style={[styles.centered, styles.sectionLogo]}>So, what do you wanna do today?? </Text>
                 </View>
                 <View style={styles.btnBackground}>
                     <View>
-                        <TouchableHighlight style={styles.btnStyle} >
+                        <TouchableHighlight style={styles.btnStyle} onPress={}>
                             <Text style={styles.submitText}>View Patient</Text>
                         </TouchableHighlight>
                     </View>
                     <View>
-                        <TouchableHighlight style={styles.btnStyle}>
+                        <TouchableHighlight style={styles.btnStyle} onPress={}>
                             <Text style={styles.submitText}>Insert Patient</Text>
                         </TouchableHighlight>
                     </View>
