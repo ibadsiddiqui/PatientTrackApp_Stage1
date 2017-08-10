@@ -21,6 +21,12 @@ export default StyleSheet.create({
   inputPass:{
     color: "#E64A19",
   },
+  inputName:{
+    color: "#E64A19",
+  },
+  inputBio:{
+    color: "#E64A19",
+  },
   loginSection:{
     margin: 0,
     marginTop: 100
