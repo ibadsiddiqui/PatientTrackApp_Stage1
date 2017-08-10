@@ -8,16 +8,28 @@ export default StyleSheet.create({
 
   },
   viewLogo:{
-      height: 260,
-      backgroundColor: "#FF5722",
-      
+    height: 260,
+    backgroundColor: "#FF5722",
   },
   logo: {
     marginTop: 80,
-    marginLeft: 50,
-    color: "#E64A19",
-    fontWeight: "700",
-    fontSize: 30,
+    marginLeft: 135,
+    color: "#FFF",
+    fontWeight: "200",
+    fontSize: 40,
+  },  
+  logo2: {
+    marginLeft: 120,
+    color: "#FFF",
+    fontWeight: "200",
+    fontSize: 20,
+  },
+  smallFont:{
+    fontSize: 10,
+  },
+  infoData:{
+    marginLeft: 30,
+    fontSize: 15
   },
   centered: {
     alignItems: 'center'
@@ -28,40 +40,22 @@ export default StyleSheet.create({
   inputPass:{
     color: "#E64A19",
   },
-  loginSection:{
-    margin: 0,
-    marginTop: 100
+  sectionLogo:{
+    marginLeft: 50,
+    marginTop: 10,
+    fontSize: 17,
   },
-  submitBtn1:{
-    alignItems: 'center',    
-    justifyContent: 'center', 
-    backgroundColor: 'transparent',
-    borderWidth: 1,
-    borderColor: 'transparent',
-    borderRadius: 5,
-    marginBottom: 20,
-    marginLeft: 1,
-    paddingLeft: 20,
-    paddingRight: 20,
-    marginTop: 50,
-    width: 350,
-    height: 40,
-    },
-    submitBtn2:{
-      alignItems: 'center',
-      backgroundColor: 'transparent',
-      borderWidth: 1,
-      borderColor: 'transparent',
-      borderRadius: 5,
-      height: 40,
-      justifyContent: 'center',
-      marginTop: 150,
-      marginLeft: 5,
-      
-      width: 350,
-    },
-    submitText:{
-        color: '#E64A19',
-        fontWeight: '600'
-    },
+  btnBackground:{
+    flex:1,
+    flexDirection: 'row',
+    marginTop: 65,
+    marginBottom: 10 
+  },
+  btnStyle:{
+    marginLeft: 30,
+  },
+  submitText:{
+      color: '#E64A19',
+      fontWeight: '600'
+  },
 });
