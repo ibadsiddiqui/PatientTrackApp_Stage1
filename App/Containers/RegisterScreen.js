@@ -30,16 +30,12 @@ export default class LaunchScreen extends Component {
   onSave = async () =>{
     //check if state email and passowrd is not empty
     if(this.state.name != "" && this.state.email != "" && this.state.password != ""){
-      const SetNameKey = "@name:"+this.state.name;      
-      const SetEmailKey = "@email:"+this.state.email;
-      const SetPassKey  = "@password:"+this.state.password; 
-      const SetBioKey  = "@password:"+this.state.bio; 
-    
       try{
-        await AsyncStorage.setItem(SetNameKey, this.state.name);
-        await AsyncStorage.setItem(SetEmailKey, this.state.email);
-        await AsyncStorage.setItem(SetPassKey, this.state.password);
-        await AsyncStorage.setItem(SetBioKey, this.state.bio); 
+        await AsyncStorage.multiSet([["@name", this.state.name],
+                                    ["@email:"+this.state.email , this.state.email],
+                                    ["@password:"+this.state.password, this.state.password],
+                                    ["@bio", this.state.bio]]);
+
         Alert.alert('Registration Completed', "You have been registerd as " + this.state.name)
         this.props.navigation.navigate('LaunchScreen', {userName: this.state.name, 
                                                         userEmail: this.state.email,
