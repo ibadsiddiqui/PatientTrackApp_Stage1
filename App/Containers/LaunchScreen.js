@@ -13,7 +13,7 @@ import {
 import { Images } from '../Themes'
 // navigation
 import {navigate} from 'react-navigation'
-
+ 
 // Styles
 import styles from './Styles/LaunchScreenStyles'
 
@@ -32,13 +32,10 @@ export default class LaunchScreen extends Component {
   onLoad = async () =>{
     // loads params from registration navigation
     const {params} = this.props.navigation.state;
-    const bio = params.userBio;
-    const name = params.userName;
+    const bio = await AsyncStorage.getItem("@bio");
+    const name = await AsyncStorage.getItem("@name");
     
 
-    if(bio==undefined || name==undefined){
-      Alert.alert('Not a user', "Sorry but your information is not included")
-    }
     //check if state email and passowrd is not empty
     if(this.state.email != "" && this.state.password != ""){
       const EmailKey = "@email:"+this.state.email;          /// Assigns Email Key
