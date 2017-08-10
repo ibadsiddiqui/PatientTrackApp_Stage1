@@ -1,29 +1,101 @@
 import React, { Component } from 'react'
-import { ScrollView, Text, Image, View } from 'react-native'
+import { 
+  ScrollView, 
+  Text,
+  Alert,
+  Image, 
+  View,
+  StatusBar,
+  TextInput,
+  TouchableHighlight,
+  AsyncStorage,
+} from 'react-native'
 import { Images } from '../Themes'
+// navigation
+import {navigate} from 'react-navigation'
 
 // Styles
 import styles from './Styles/LaunchScreenStyles'
 
+
 export default class LaunchScreen extends Component {
+  // defines constructor
+  constructor(){
+    super();
+    this.state={
+      email: "",
+      password: "",
+    }
+  }
+
+  // load data from asyncstorage
+  onLoad = async () =>{
+    // loads params from registration navigation
+    const {params} = this.props.navigation.state;
+    const bio = params.userBio;
+    const name = params.userName;
+    
+
+    if(bio==undefined || name==undefined){
+      Alert.alert('Not a user', "Sorry but your information is not included")
+    }
+    //check if state email and passowrd is not empty
+    if(this.state.email != "" && this.state.password != ""){
+      const EmailKey = "@email:"+this.state.email;          /// Assigns Email Key
+      const PassKey  = "@password:"+this.state.password;    /// Assigns Pass Key
+      
+       // try to get the email and password from asycstorage
+      try{
+          const email    = await AsyncStorage.getItem(EmailKey);  // Get the email using EmailKey from asyncstorage
+          const password = await AsyncStorage.getItem(PassKey);   // Get the pass  using Passkey  from asyncstorage
+          if(email == this.state.email && password == this.state.password){  // Check if the user if valid or not
+            Alert.alert('Welcome ' + email);
+        }
+      }catch(error){
+          Alert.alert("User Login Unsuccessful","User not found"); // Alert Password or Email error
+          this.props.navigation.navigate('LaunchScreen');          // stay where u are
+      }
+
+      //sends data to next desktop profile
+      this.props.navigation.navigate('DesktopScreen', { email: this.state.email, password: this.state.password, 
+                                                            bio: bio,
+                                                            name: name})
+    }
+    else
+      Alert.alert('Email or Passowrd not inserted');  // Alert if input boxes are empty
+  }
   render () {
     return (
-      <View style={styles.mainContainer}>
-        <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
+      <View style={styles.container}>
+        <StatusBar backgroundColor="transparent" barStyle="light-content"/>
+        <Text style={[styles.centered, styles.logo]}>Welcome back Doctor! ;) </Text>
         <ScrollView style={styles.container}>
-          <View style={styles.centered}>
-            <Image source={Images.launch} style={styles.logo} />
-          </View>
-
           <View style={styles.section} >
-            <Image source={Images.ready} />
-            <Text style={styles.sectionText}>
-              This probably isn't what your app is going to look like. Unless your designer handed you this screen and, in that case, congrats! You're ready to ship. For everyone else, this is where you'll see a live preview of your fully functioning app using Ignite.
-            </Text>
+            <View style={styles.loginSection}>
+              <TextInput  style={styles.inputEmail}
+                          keyboardType= 'email-address'
+                          onChangeText={(text)=>{this.setState({email: text})}}   // assign the values to state on change Text
+                          placeholder="Enter Email.."     />
+              <TextInput  style={styles.inputPass}
+                          onChangeText={(text)=>{this.setState({password: text})}} // assign the values to state on change Text
+                          placeholder="Enter Password.." />
+              <TouchableHighlight   
+                          onPress = {this.onLoad}                                  // on login validate
+                          underlayColor ="#efefef" style={styles.submitBtn1}>
+                    <Text style={styles.submitText}>Login</Text>
+              </TouchableHighlight>
+            </View>
+            <View>
+                <TouchableHighlight onPress = {()=>{this.props.navigation.navigate('RegisterScreen')}} // navigate to RegisterScreen assigned
+                                    underlayColor ="#efefef" style={styles.submitBtn2}>
+                    <Text style={styles.submitText}>New? Register here.</Text>
+                </TouchableHighlight>
+            </View>
           </View>
-
         </ScrollView>
       </View>
     )
   }
 }
+
+
