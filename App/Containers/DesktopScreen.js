@@ -55,17 +55,17 @@ export default class DesktopScreen extends Component {
                 </View>
                 <View style={styles.btnBackground}>
                     <View>
-                        <TouchableHighlight style={styles.btnStyle} onPress={}>
+                        <TouchableHighlight style={styles.btnStyle} onPress={()=>this.props.navigation.navigate('ViewPatientScreen')}>
                             <Text style={styles.submitText}>View Patient</Text>
                         </TouchableHighlight>
                     </View>
                     <View>
-                        <TouchableHighlight style={styles.btnStyle} onPress={}>
+                        <TouchableHighlight style={styles.btnStyle} onPress={()=>this.props.navigation.navigate('InsertPatientScreen')}>
                             <Text style={styles.submitText}>Insert Patient</Text>
                         </TouchableHighlight>
                     </View>
                     <View>
-                        <TouchableHighlight style={styles.btnStyle}>
+                        <TouchableHighlight style={styles.btnStyle} onPress={}>
                             <Text style={styles.submitText}>Search Patient</Text>
                         </TouchableHighlight>
                     </View>
