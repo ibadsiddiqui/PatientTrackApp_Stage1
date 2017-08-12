@@ -5,21 +5,25 @@ export default StyleSheet.create({
   container: {
     // paddingBottom: Metrics.baseMargin
     backgroundColor: "#fff"
-
   },
   viewLogo:{
-    height: 150,
+    height: 170,
     backgroundColor: "#FF9800",
   },
+  backButton:{
+    marginLeft: 10,
+    height: 40,
+    width: 40
+  },
   insertBar: {
-    marginTop: 40,
-    marginLeft: 135,
+    paddingBottom: 10,
+    marginTop: 0,
     color: "#FF9800",
     fontWeight: "200",
-    fontSize: 20,
+    fontSize: 15,
   },
   logo: {
-    marginTop: 40,
+    marginTop: 20,
     marginLeft: 160,
     color: "#FFF",
     fontWeight: "200",
@@ -33,6 +37,11 @@ export default StyleSheet.create({
   },
   centered: {
     alignItems: 'center'
+  },
+  smallFont:{
+    fontSize: 10,
+    margin: 0,
+    color: "#FF9800",
   },
 
 })
