@@ -25,15 +25,15 @@ export default class LaunchScreen extends Component {
       bio: "",
     }
   }
-
+  
   // load data from asyncstorage
   onSave = async () =>{
     //check if state email and passowrd is not empty
     if(this.state.name != "" && this.state.email != "" && this.state.password != ""){
       try{
         await AsyncStorage.multiSet([["@name", this.state.name],
-                                    ["@email:"+this.state.email , this.state.email],
-                                    ["@password:"+this.state.password, this.state.password],
+                                    ["@email" , this.state.email],
+                                    ["@password", this.state.password],
                                     ["@bio", this.state.bio]]);
 
         Alert.alert('Registration Completed', "You have been registerd as " + this.state.name)

@@ -38,8 +38,8 @@ export default class LaunchScreen extends Component {
 
     //check if state email and passowrd is not empty
     if(this.state.email != "" && this.state.password != ""){
-      const EmailKey = "@email:"+this.state.email;          /// Assigns Email Key
-      const PassKey  = "@password:"+this.state.password;    /// Assigns Pass Key
+      const EmailKey = "@email";          /// Assigns Email Key
+      const PassKey  = "@password:";    /// Assigns Pass Key
       
        // try to get the email and password from asycstorage
       try{

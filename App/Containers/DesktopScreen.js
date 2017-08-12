@@ -19,14 +19,27 @@ import {navigate} from 'react-navigation';
 export default class DesktopScreen extends Component {
     constructor(){
         super();
-
+        this.state={
+            name:       "",
+            email:      "",
+            password:   "",
+            bio:        "",
+        }
+    }
+    componentWillMount = async () => {
+        this.setState({
+            name: await AsyncStorage.getItem("@name"),
+            email: await AsyncStorage.getItem("@email"),
+            password:  await AsyncStorage.getItem("@password"),
+            bio: await AsyncStorage.getItem("@bio"),
+        });
     }
     // load data from asyncstorage
     render () {
         const {params} = this.props.navigation.state;
         return (
         <View>
-        <StatusBar backgroundColor="#FF5722" barStyle="light-content"/>
+            <StatusBar backgroundColor="#FF5722" barStyle="light-content"/>
             <View style={styles.viewLogo}>
                 <Text style={[styles.centered, styles.logo]}>Hello! </Text>
                 <Text style={[styles.centered, styles.logo2]}>Welcome Doctor! </Text>
@@ -35,19 +48,19 @@ export default class DesktopScreen extends Component {
                 <View style={styles.section} >
                     <View style={styles.infoSection}>
                         <Text style={styles.smallFont}>Name:</Text>
-                        <Text style={styles.infoData}>{params.name}</Text>
+                        <Text style={styles.infoData}>{this.state.name}</Text>
                         <View style={{backgroundColor: "#BDBDBD", borderBottomWidth: 1, marginBottom: 20}}/>
 
                         <Text style={styles.smallFont}>Email:</Text>
-                        <Text style={styles.infoData}>{params.email}</Text>
+                        <Text style={styles.infoData}>{this.state.email}</Text>
                         <View style={{backgroundColor: "#BDBDBD", borderBottomWidth: 1, marginBottom: 20}}/>                        
 
                         <Text style={styles.smallFont}>Password:</Text>
-                        <Text style={styles.infoData}>{params.password}</Text>
+                        <Text style={styles.infoData}>{this.state.password}</Text>
                         <View style={{backgroundColor: "#BDBDBD", borderBottomWidth: 1, marginBottom: 20}}/>
                         
                         <Text style={styles.smallFont}>Bio:</Text>
-                        <Text style={styles.infoData}>{params.bio}</Text>
+                        <Text style={styles.infoData}>{this.state.bio}</Text>
                         <View style={{backgroundColor: "#BDBDBD", borderBottomWidth: 1, marginBottom: 2}}/>
                         
                     </View>
